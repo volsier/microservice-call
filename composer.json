@@ -17,7 +17,8 @@
     "autoload": {
         "psr-4": {
             "MicroService\\": "src/"
-        }
+        },
+        "files": ["src/Common/functions.php"]
     },
     "require": {}
 }
