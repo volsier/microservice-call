@@ -1,0 +1,23 @@
+{
+    "name": "lin/micro-service-call",
+    "description": "微服务调用",
+    "keywords": [
+        "micro-service",
+        "service"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "qinglin",
+            "email": "zql@volsier.cn"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "MicroService\\": "src/"
+        }
+    },
+    "require": {}
+}
