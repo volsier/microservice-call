@@ -1,4 +1,5 @@
 <?php
+
 namespace MicroService\ConfigClass;
 
 /**
@@ -6,27 +7,33 @@ namespace MicroService\ConfigClass;
  * Class MsgSenderConfig
  * @package MicroService\ConfigClass
  */
-class MsgSenderConfig{
+class MsgSenderConfig
+{
     //接收者
-    public $receiver='';
+    public $receiver = '';
     //模板id
-    public $template_id='';
+    public $template_id = '';
     //参数
-    public $args=[];
+    public $args = [];
     //消息通道（如短信：云融、创蓝...）
-    public $channel='';
+    public $channel = '';
     //账号
-    public $account='';
+    public $account = '';
     //消息类型(营销、通知...)
-    public $type='';
+    public $type = '';
     //批次号
-    public $batch_id='';
+    public $batch_id = '';
     //发送时间
-    public $send_time='';
+    public $send_time = '';
     //使用swoole自身的定时器进行发送(24小时以内)
-    public $self_send_time='';
+    public $self_send_time = '';
     //沟通微服务渠道配置
-    public $driver=[];
+    public $driver = [];
     //扩展字段
-    public $ext=[];
+    public $ext = [];
+
+    public function __construct($driver)
+    {
+        $this->driver = $driver;
+    }
 }
