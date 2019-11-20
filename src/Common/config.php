@@ -8,10 +8,10 @@ return [
     ],
 
     'release_redis' => [
-        'host' => env('MICRO_REDIS_HOST', '127.0.0.1'),
-        'password' => env('MICRO_REDIS_PASSWORD', null),
-        'port' => env('MICRO_REDIS_PORT', 6379),
-        'select_num' => 10,
+        'host' => config('apiconfig.micro_redis.host', '127.0.0.1'),
+        'password' => config('apiconfig.micro_redis.password', null),
+        'port' => config('apiconfig.micro_redis.port', 6379),
+        'select_num' => config('apiconfig.micro_redis.select_num', 10),
     ],
 
     'driver' => 'Redis',
