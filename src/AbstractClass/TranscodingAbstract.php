@@ -1,7 +1,7 @@
 <?php
 namespace MicroService\AbstractClass;
 use MicroService\ConfigClass\TranscodingConfig;
-use MicroService\FactoryClass\DataTypeFactory;
+use MicroService\FactoryClass\DataChannelFactory;
 use MicroService\Hooks\MsgHook;
 
 use Exception;
@@ -21,8 +21,8 @@ abstract class TranscodingAbstract implements MicroServiceCall
     public function __construct(TranscodingConfig $config)
     {
 
-        $this->driver = msg_config('driver');
-        $this->instance = DataTypeFactory::get_instance($this->driver);
+        $this->driver = $config['driver'];
+        $this->instance = DataChannelFactory::get_instance($this->driver);
         $this->config = $config;
         $this->check_params($config);
         $this->register_hooks();

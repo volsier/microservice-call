@@ -8,14 +8,16 @@ use MicroService\AbstractClass\CallChannel;
  * Class DataTypeFactory
  * @package MicroService\Logics
  */
-class DataTypeFactory
+class DataChannelFactory
 {
-    public static function get_instance($type)
+    public static function get_instance($driver)
     {
-        $type = ucfirst($type);
+        $key = $driver['key'];
+        $config = $driver['config'];
+        $key = ucfirst($key);
         $namespace = "MicroService\\Logics\\";
-        $reflection = new \ReflectionClass($namespace . $type . 'Channel');
-        $object = $reflection->newInstance();
+        $reflection = new \ReflectionClass($namespace . $key . 'Channel');
+        $object = $reflection->newInstance($config);
         if (!($object instanceof CallChannel)) {
             throw new \Exception('NOT CORRECT channel TYPE');
         }

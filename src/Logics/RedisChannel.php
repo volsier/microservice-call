@@ -15,27 +15,26 @@ class RedisChannel extends CallChannel
     private $redis;
     private $redis_num;
 
-    public function __construct()
+    public function __construct($config)
     {
-        $this->init_redis();
+        $this->init_redis($config);
     }
 
     /**
      * 初始化redis
      * @throws \Exception
      */
-    private function init_redis()
+    private function init_redis($config)
     {
         if (!class_exists('Redis')) {
             throw new \Exception('PHP Redis not installed');
         }
         $this->redis = new Redis();
         $env = get_msg_center_env();
-        $redis_config = msg_config($env . "_redis");
-        $this->redis_num = $redis_config('select_num') ?? 10;
-        $this->redis::connect($redis_config['host'], $redis_config['port']);
-        if (!empty($redis_config['password'])) {
-            $this->redis::auth($redis_config['password']);
+        $this->redis_num = $config('select_num') ?? 10;
+        $this->redis::connect($config['host'], $config['port']);
+        if (!empty($config['password'])) {
+            $this->redis::auth($config['password']);
         }
     }
 
