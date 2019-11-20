@@ -7,7 +7,7 @@ namespace MicroService\Hooks;
  */
 class Test2
 {
-    public function go($param){
+    static public function go($param){
         return $param;
     }
 }
