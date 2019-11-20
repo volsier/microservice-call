@@ -44,7 +44,7 @@ class Transcoding extends TranscodingAbstract
         $ext = $this->config->ext;
 
         $job_data = compact('url',  'callback_url',  'args', 'channel', 'account', 'type', 'batch_id', 'send_time', 'self_send_time', 'ext');
-        $job_name = 'sms';
+        $job_name = 'transcoding';
         $job_time = date('Y-m-d H:i:s', time());
         $job_id = msg_get_uniqid();
 
