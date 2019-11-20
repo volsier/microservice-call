@@ -31,7 +31,7 @@ class RedisChannel extends CallChannel
         }
         $this->redis = new Redis();
         $env = get_msg_center_env();
-        $this->redis_num = $config('select_num') ?? 10;
+        $this->redis_num = $config['select_num'] ?? 10;
         $this->redis::connect($config['host'], $config['port']);
         if (!empty($config['password'])) {
             $this->redis::auth($config['password']);
