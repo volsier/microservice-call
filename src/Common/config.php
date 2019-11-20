@@ -8,9 +8,9 @@ return [
     ],
 
     'release_redis' => [
-        'host' => '127.0.0.1',
-        'password' => '',
-        'port' => 6379,
+        'host' => env('MICRO_REDIS_HOST', '127.0.0.1'),
+        'password' => env('MICRO_REDIS_PASSWORD', null),
+        'port' => env('MICRO_REDIS_PORT', 6379),
         'select_num' => 10,
     ],
 

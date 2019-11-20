@@ -1,4 +1,5 @@
 <?php
+
 namespace MicroService\Logics;
 
 use MicroService\AbstractClass\CallChannel;
@@ -25,13 +26,17 @@ class RedisChannel extends CallChannel
      */
     private function init_redis()
     {
-        if (!class_exists('Redis')) throw new \Exception('PHP Redis not installed');
+        if (!class_exists('Redis')) {
+            throw new \Exception('PHP Redis not installed');
+        }
         $this->redis = new Redis();
         $env = get_msg_center_env();
         $redis_config = msg_config($env . "_redis");
         $this->redis_num = $redis_config('select_num') ?? 10;
         $this->redis::connect($redis_config['host'], $redis_config['port']);
-//        $this->redis::auth($redis_config['password']);
+        if (!empty($redis_config['password'])) {
+            $this->redis::auth($redis_config['password']);
+        }
     }
 
     /**
