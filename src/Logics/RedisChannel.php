@@ -12,6 +12,7 @@ use Redis;
 class RedisChannel extends CallChannel
 {
     private $redis;
+    private $redis_num;
 
     public function __construct()
     {
@@ -28,6 +29,7 @@ class RedisChannel extends CallChannel
         $this->redis = new Redis();
         $env = get_msg_center_env();
         $redis_config = msg_config($env . "_redis");
+        $this->redis_num = $redis_config('select_num') ?? 10;
         $this->redis::connect($redis_config['host'], $redis_config['port']);
 //        $this->redis::auth($redis_config['password']);
     }
@@ -43,7 +45,7 @@ class RedisChannel extends CallChannel
             $queue_name = $data['push_queue'];
             $queue_data = $data['push_data'];
             $queue_data = $this->combine_data($queue_data);
-            $this->redis::select(10);
+            $this->redis::select($this->redis_num);
             $response = $this->redis::rpush($queue_name, $queue_data);
             $this->redis::select(0);
             return $response;
