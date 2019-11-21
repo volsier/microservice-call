@@ -13,7 +13,6 @@ use Redis;
 class RedisChannel extends CallChannel
 {
     private $redis;
-    private $redis_num;
 
     public function __construct($config)
     {
@@ -30,12 +29,7 @@ class RedisChannel extends CallChannel
             throw new \Exception('PHP Redis not installed');
         }
         $this->redis = new Redis();
-        $env = get_msg_center_env();
-        $this->redis_num = $config['select_num'] ?? 10;
-        $this->redis::connect($config['host'], $config['port']);
-        if (!empty($config['password'])) {
-            $this->redis::auth($config['password']);
-        }
+        $this->redis::connect($config);
     }
 
     /**

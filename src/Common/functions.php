@@ -27,15 +27,6 @@ function msg_get_uniqid()
 }
 
 /**
- * 设置消息中心的env
- */
-function put_msg_center_env()
-{
-    $env = dirname(__FILE__) . DIRECTORY_SEPARATOR . '.env';
-    putenv("LION-MSG-CENTER=$env");
-}
-
-/**
  * 获取消息中心的env
  * @return string
  */
