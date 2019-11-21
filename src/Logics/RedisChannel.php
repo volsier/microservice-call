@@ -3,6 +3,7 @@
 namespace MicroService\Logics;
 
 use MicroService\AbstractClass\CallChannel;
+use Predis\Client;
 use Redis;
 
 /**
@@ -28,8 +29,8 @@ class RedisChannel extends CallChannel
         if (!class_exists('Redis')) {
             throw new \Exception('PHP Redis not installed');
         }
-        $this->redis = new Redis();
-        $this->redis::connect($config);
+
+        $this->redis  = new Client($config);;
     }
 
     /**
@@ -43,9 +44,7 @@ class RedisChannel extends CallChannel
             $queue_name = $data['push_queue'];
             $queue_data = $data['push_data'];
             $queue_data = $this->combine_data($queue_data);
-            $this->redis::select($this->redis_num);
-            $response = $this->redis::rpush($queue_name, $queue_data);
-            $this->redis::select(0);
+            $response = $this->redis->rpush($queue_name, $queue_data);
             return $response;
         }
         return false;
