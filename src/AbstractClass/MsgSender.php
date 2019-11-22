@@ -20,8 +20,7 @@ abstract class MsgSender implements MicroServiceCall
 
     public function __construct(MsgSenderConfig $config)
     {
-
-        $this->driver = $config['driver'];
+        $this->driver = $config->driver;
         $this->instance = DataChannelFactory::get_instance($this->driver);
         $this->config = $config;
         $this->check_params($config);
