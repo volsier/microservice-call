@@ -25,6 +25,13 @@ class TranscodingConfig{
     public $send_time='';
     //使用swoole自身的定时器进行发送(24小时以内)
     public $self_send_time='';
+    //沟通微服务渠道配置
+    public $driver=[];
     //扩展字段
     public $ext=[];
+
+    public function __construct($driver)
+    {
+        $this->driver = $driver;
+    }
 }
