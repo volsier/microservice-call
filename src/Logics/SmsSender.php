@@ -14,10 +14,10 @@ class SmsSender extends MsgSender
      * 发送消息
      * @return mixed
      */
-    public function send()
+    public function send($push_queue = '')
     {
         $push_data = $this->get_params();
-        $push_queue = 'msgcenter:sms:queue';
+        $push_queue = !empty($push_queue) ? $push_queue : 'msgcenter:sms:queue';
         $push = compact('push_data', 'push_queue');
         $res = $this->instance->push($push);
         if($res){

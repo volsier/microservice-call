@@ -14,10 +14,10 @@ class Transcoding extends TranscodingAbstract
      * 发送消息
      * @return mixed
      */
-    public function send()
+    public function send($push_queue = '')
     {
-        $push_data = $this->get_params();
-        $push_queue = 'micro_service_call:transcoding:queue';
+        $push_data  = $this->get_params();
+        $push_queue = !empty($push_queue) ? $push_queue : 'micro_service_call:transcoding:queue';
         $push = compact('push_data', 'push_queue');
         $res = $this->instance->push($push);
         if($res){
